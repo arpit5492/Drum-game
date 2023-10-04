@@ -4,22 +4,24 @@ for(var i=0;i<document.querySelectorAll("body button").length;i++){
     document.querySelectorAll("body button")[i].addEventListener("click",function(){
         var clickInnerHtml = this.innerHTML;
         makeSound(clickInnerHtml);
+        buttonAnimation(clickInnerHtml);
     });
 }
 
-// function for sound plays when key is pressed on keyboard
+// Function for sound plays when key is pressed on keyboard
 
 document.addEventListener("keypress", function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 
 // Making a function for the sounds
 
-function makeSound(key){
-    switch(key){
+function makeSound(k){
+    switch(k){
         case "w":
-            var crash = new Audio("./sounds/crash.mp3");
+            var crash = new Audio("./sounds/tom-3.mp3");
             crash.play();
             break;
         case "a":
@@ -39,7 +41,7 @@ function makeSound(key){
             tom2.play();
             break;
         case "k":
-            var tom3 = new Audio("./sounds/tom-3.mp3");
+            var tom3 = new Audio("./sounds/crash.mp3");
             tom3.play();
             break;
         case "l":
@@ -48,6 +50,16 @@ function makeSound(key){
             break;
         default: console.log(clickInnerHtml);
     }
+}
+
+// Function to know which button is clicked
+
+function buttonAnimation(anime){
+    var animation = document.querySelector("." + anime);
+    animation.classList.add("pressed");
+    setTimeout(function(){
+        animation.classList.remove("pressed");
+    }, "10 second");
 }
 
 
